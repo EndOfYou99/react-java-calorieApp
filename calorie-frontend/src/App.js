@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import {useState, React} from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import FoodsList from './components/FoodList';
+import AddFood from './components/AddFood';
 
 function App() {
+  const [addedList, setAddedList] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello world!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+                <Route
+          path="/"
+          element={<FoodsList addedList={addedList} setAddedList={setAddedList} />}
+        />
+        <Route path="/add" element={<AddFood />} />
+      </Routes>
+    </Router>
   );
 }
 
